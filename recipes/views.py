@@ -8,7 +8,7 @@ def home(request):
         'name': 'Fabri',
     })
 
-def recipe(request):
-    return render(request, 'pages/home.html', context={
+def recipe(request, id):
+    return render(request, 'pages/recipe-view.html', context={
         'name': 'Fabri',
     })
