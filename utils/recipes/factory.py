@@ -30,10 +30,11 @@ def make_recipe():
             'name': fake.word()
         },
         'cover': {
-            'url': 'https://loremflickr.com/%s/%s/food,cook' % rand_ratio(),
+            'url': 'https://picsum.photos/%s/%s' % rand_ratio(), # funfou, kk
         }
     }
 
+# 'url': 'https://loremflickr.com/%s/%s/food,cook' % rand_ratio(), | esse teve que ser updatado, rs. .
 
 if __name__ == '__main__':
     from pprint import pprint

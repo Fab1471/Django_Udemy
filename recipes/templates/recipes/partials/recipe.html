@@ -1,43 +1,45 @@
 <div class="recipe recipe-list-item">
+    
     <div class="recipe-cover">
-        <img src="https://fakeimg.pl/1280x720/28b8b6/1d0670?text=Django" alt="Temporário">
+        <img src="{{ recipe.cover.url }}" alt="{{ recipe.title }}">
     </div>
+    
     <div class="recipe-title-container">
-        <h2 class="recipe-title">Lorem ipsum dolor sit amet.</h2>
+        <h2 class="recipe-title">{{ recipe.title }}.</h2>
     </div>
 
     <div class="recipe-author">
         <span class="recipe-author-item">
             <i class="fas fa-user"></i>
-            Fabri Junin
+            {{ recipe.author.first_name }} {{ recipe.author.last_name}}
         </span>
         <span class="recipe-author-item">
             <i class="fas fa-calendar-alt"></i>
-            22/01/2025 às 6:07 p.m
+            {{ recipe.created_at|date:"d/m/Y" }} às {{ recipe.created_at|date:"H:i:s" }}
         </span>
         <span class="recipe-author-item">
             <a href="/recipes/category/cafe-da-manha">
                 <i class="fas fa-layer-group"></i>
-                <span>Café da Manhã</span>
+                <span>{{ recipe.category.name }}</span>
             </a>
         </span>
     </div>
     
     <div class="recipe-content">
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore, iusto harum dolore dicta libero atque, eaque assumenda aspernatur esse eum commodi odio, facere sint tenetur error distinctio maxime consequuntur qui.</p>
+        <p>L{{ recipe.description }}</p>
     </div>
 
     <div class="recipe-meta-container">
         <div class="recipe-meta recipe-preparation">
             <h3 class="recipe-meta-title"><i class="fas fa-stopwatch"></i> Preparo</h3>
             <div class="recipe-meta-text">
-                0 Minutos
+                {{ recipe.preparation_time }} {{ recipe.preparation_time_unit }}
             </div>
         </div>
         <div class="recipe-meta recipe-servings">
             <h3 class="recipe-meta-title"><i class="fas fa-pizza-slice"></i> Porções</h3>
             <div class="recipe-meta-text">
-                0 Porções
+                {{ recipe.servings }} {{ recipe.servings_time_unit }}
             </div>
         </div>
     </div>
@@ -48,3 +50,4 @@
             <span>ver mais...</span>
         </a>
     </footer>
+</div> <!-- por não ter fechado essa div o code tava dando tudo errado e o grid não estava virando grid -->

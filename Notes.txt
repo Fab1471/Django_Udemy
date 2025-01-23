@@ -2,5 +2,10 @@
 
 https://github.com/luizomf/curso-django-projeto1
 
+https://fakeimg.pl/1280x720/28b8b6/1d0670?text=Django
 
 # arrumar o grid - tá tenso
+
+corrigido na linha 53 do arquivo: \Django_Udemy\recipes\templates\recipes\partials\recipe.html
+
+control + shift + r = atualiza o cache do navegador. .
