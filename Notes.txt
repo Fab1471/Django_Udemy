@@ -1,3 +1,6 @@
 [...]
 
 https://github.com/luizomf/curso-django-projeto1
+
+
+# arrumar o grid - tá tenso
