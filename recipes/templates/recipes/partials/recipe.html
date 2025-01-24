@@ -1,11 +1,17 @@
 <div class="recipe recipe-list-item">
     
     <div class="recipe-cover">
-        <img src="{{ recipe.cover.url }}" alt="{{ recipe.title }}">
+        <a href="{% url 'recipes:recipe' recipe.id %}"> <!-- ainda não tá atualizando o id -->
+            <img src="{{ recipe.cover.url }}" alt="{{ recipe.title }}"> <!-- fixado: o problema era que o debaixo tava dando overwrite -->
+        </a>
     </div>
     
     <div class="recipe-title-container">
-        <h2 class="recipe-title">{{ recipe.title }}.</h2>
+        <h2 class="recipe-title">
+                <a href="{% url 'recipes:recipe' recipe.id %}">
+                    {{ recipe.title }}.
+                </a>
+        </h2>
     </div>
 
     <div class="recipe-author">
@@ -44,10 +50,18 @@
         </div>
     </div>
 
-    <footer class="recipe-footer">
-        <a class="recipe-read-more button button-dark button-full-width" href="/recipes/3/">
-            <i class="fas fa-eye"></i>
-            <span>ver mais...</span>
-        </a>
-    </footer>
+    {% if is_detail_page is not True %} <!-- se não for página de detalhe, printe o rodapé do botão ver mais (atribuição feita na view) -->
+        <footer class="recipe-footer">
+            <a class="recipe-read-more button button-dark button-full-width" href="{% url 'recipes:recipe' recipe.id %}">
+                <i class="fas fa-eye"></i>
+                <span>ver mais...</span>
+            </a>
+        </footer>
+    {% endif %}
+
+    {% if is_detail_page is True %} <!-- se for página de detalhe, mostre a div de modo de preparo (atribuição feita na view) -->
+        <div class="preparation-steps">
+            {{ recipe.preparation_steps|linebreaksbr }}
+        </div>
+    {% endif %}
 </div> <!-- por não ter fechado essa div o code tava dando tudo errado e o grid não estava virando grid -->
