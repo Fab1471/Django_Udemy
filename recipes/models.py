@@ -6,6 +6,8 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=65)
 
+    def __str__(self):
+        return self.name # método mágico para quando tentar chamar o model como string, retornando agora o nome do model que seria a categoria da receita neste caso. .
 
 class Recipe(models.Model):
     title = models.CharField(max_length=65)
