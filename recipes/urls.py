@@ -5,5 +5,7 @@ app_name = 'recipes' # com o app_name não é preciso passar o recipes no name d
 
 urlpatterns = [
     path('', views.home, name="home"),
+    path('recipes/category/<int:category_id>/', 
+        views.category, name="category"),
     path('recipes/<int:id>/', views.recipe, name="recipe"),
 ]

@@ -1,11 +1,12 @@
 <div class="recipe recipe-list-item">
-    
-    <div class="recipe-cover">
-        <a href="{% url 'recipes:recipe' recipe.id %}"> <!-- ainda não tá atualizando o id -->
-            <img src="{{ recipe.cover.url }}" alt="{{ recipe.title }}"> <!-- fixado: o problema era que o debaixo tava dando overwrite -->
-        </a>
-    </div>
-    
+    {% if recipe.cover %} 
+        <div class="recipe-cover">
+            <a href="{% url 'recipes:recipe' recipe.id %}"> <!-- ainda não tá atualizando o id -->
+                <img src="{{ recipe.cover.url }}" alt="{{ recipe.title }}"> <!-- fixado: o problema era que o debaixo tava dando overwrite -->
+            </a>
+        </div>
+    {% endif %}
+
     <div class="recipe-title-container">
         <h2 class="recipe-title">
                 <a href="{% url 'recipes:recipe' recipe.id %}">
@@ -17,22 +18,30 @@
     <div class="recipe-author">
         <span class="recipe-author-item">
             <i class="fas fa-user"></i>
-            {{ recipe.author.first_name }} {{ recipe.author.last_name}}
+
+            {% if recipe.author.first_name %}
+                {{ recipe.author.first_name }} {{ recipe.author.last_name}}
+            {% else %}
+                {{ recipe.author.username }}
+            {% endif %}
         </span>
         <span class="recipe-author-item">
             <i class="fas fa-calendar-alt"></i>
             {{ recipe.created_at|date:"d/m/Y" }} às {{ recipe.created_at|date:"H:i:s" }}
         </span>
-        <span class="recipe-author-item">
-            <a href="/recipes/category/cafe-da-manha">
-                <i class="fas fa-layer-group"></i>
-                <span>{{ recipe.category.name }}</span>
-            </a>
-        </span>
+
+        {% if recipe.category is not None %} <!-- se não for None ele executa e exibe a category registrada -->
+            <span class="recipe-author-item">
+                <a href="{% url 'recipes:category' recipe.category.id %}">
+                    <i class="fas fa-layer-group"></i>
+                    <span>{{ recipe.category.name }}</span>
+                </a>
+            </span>
+        {% endif %}
     </div>
     
     <div class="recipe-content">
-        <p>L{{ recipe.description }}</p>
+        <p>{{ recipe.description }}</p>
     </div>
 
     <div class="recipe-meta-container">
