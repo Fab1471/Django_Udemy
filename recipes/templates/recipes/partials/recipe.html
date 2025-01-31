@@ -73,7 +73,7 @@
     
     {% if is_detail_page is True %} <!-- se for página de detalhe, mostre a div de modo de preparo (atribuição feita na view) -->
         <div class="preparation-steps">
-            {% if preparation_is_html is True %} 
+            {% if recipe.preparation_steps_is_html is True %} 
                 {{ recipe.preparation_steps|safe }}
             {% else %}
                 {{ recipe.preparation_steps|linebreaksbr }}
